@@ -1,0 +1,36 @@
+<div class="container mt-4">
+  <h3>Evaluated Customers</h3>
+
+  <div *ngIf="!evaluated.length" class="alert alert-info">No data to show. Please add customers and rules.</div>
+
+  <table *ngIf="evaluated.length" class="table table-bordered table-hover mt-3">
+    <thead class="table-light">
+      <tr>
+        <th>Name</th>
+        <th>Income</th>
+        <th>Credit Score</th>
+        <th>Loan Amount</th>
+        <th>Risk</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cust of evaluated">
+        <td>{{ cust.name }}</td>
+        <td>{{ cust.income }}</td>
+        <td>{{ cust.creditScore }}</td>
+        <td>{{ cust.loanAmount }}</td>
+        <td>
+          <span class="badge" 
+            [ngClass]="{
+              'bg-danger': cust.risk === 'High',
+              'bg-warning text-dark': cust.risk === 'Medium',
+              'bg-success': cust.risk === 'Low',
+              'bg-secondary': cust.risk === 'Unknown'
+            }">
+            {{ cust.risk }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

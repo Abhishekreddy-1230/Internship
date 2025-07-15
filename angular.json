@@ -16,6 +16,10 @@
             "outputPath": "dist/risk-rule-engine",
             "index": "src/index.html",
             "browser": "src/main.ts",
+            "styles": [
+            "src/styles.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
+          ],
             "polyfills": [
               "zone.js"
             ],
@@ -26,9 +30,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            
             "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -97,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "eb5a8c88-793f-47b6-8b3a-09ed98a45bca"
   }
 }

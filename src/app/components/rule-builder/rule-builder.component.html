@@ -1,0 +1,53 @@
+<div class="container mt-4">
+  <h3>Create a New Risk Rule</h3>
+
+  <form [formGroup]="ruleForm" (ngSubmit)="onSubmit()" class="card p-4 shadow">
+
+    <div formArrayName="conditions">
+      <div *ngFor="let condition of conditions.controls; let i = index" [formGroupName]="i" class="mb-3 row align-items-center">
+        
+        <div class="col-md-3">
+          <select formControlName="field" class="form-select">
+            <option value="income">Income</option>
+            <option value="creditScore">Credit Score</option>
+            <option value="loanAmount">Loan Amount</option>
+          </select>
+        </div>
+
+        <div class="col-md-2">
+          <select formControlName="operator" class="form-select">
+            <option value="<"> &lt; </option>
+            <option value=">"> &gt; </option>
+            <option value="<="> &le; </option>
+            <option value=">="> &ge; </option>
+            <option value="=="> == </option>
+          </select>
+        </div>
+
+        <div class="col-md-3">
+          <input type="number" formControlName="value" class="form-control" placeholder="Value" />
+        </div>
+
+        <div class="col-md-2">
+          <button type="button" class="btn btn-outline-danger" (click)="removeCondition(i)" *ngIf="conditions.length > 1">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-link" (click)="addCondition()">+ Add Condition</button>
+
+    <div class="mt-3">
+      <label for="riskLabel" class="form-label">Select Risk Label:</label>
+      <select id="riskLabel" class="form-select" formControlName="riskLabel">
+        <option value="">-- Choose --</option>
+        <option value="High">High Risk</option>
+        <option value="Medium">Medium Risk</option>
+        <option value="Low">Low Risk</option>
+      </select>
+    </div>
+
+    <div class="mt-3 text-end">
+      <button type="submit" class="btn btn-success" [disabled]="!ruleForm.valid">Save Rule</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  <h3>Saved Risk Rules</h3>
+
+  <div *ngIf="rules.length === 0" class="alert alert-warning">No rules saved yet.</div>
+
+  <div *ngFor="let rule of rules" class="card mb-3 shadow-sm">
+    <div class="card-body">
+      <h5 class="card-title text-primary">{{ rule.riskLabel }} Risk Rule</h5>
+
+      <ul class="list-group list-group-flush mb-3">
+        <li *ngFor="let cond of rule.conditions" class="list-group-item">
+          <code>{{ cond.field }} {{ cond.operator }} {{ cond.value }}</code>
+        </li>
+      </ul>
+
+      <button class="btn btn-danger btn-sm" (click)="deleteRule(rule.id)">Delete</button>
+    </div>
+  </div>
+</div>

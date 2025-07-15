@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h3>Customer Data Entry</h3>
+
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()" class="card p-4 shadow-sm mb-4">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input formControlName="name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Monthly Income</label>
+      <input formControlName="income" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Credit Score</label>
+      <input formControlName="creditScore" type="number" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Loan Amount</label>
+      <input formControlName="loanAmount" type="number" class="form-control" />
+    </div>
+
+    <div class="text-end">
+      <button class="btn btn-primary" type="submit" [disabled]="!customerForm.valid">Add Customer</button>
+    </div>
+  </form>
+
+  <h5>Added Customers ({{ customerList.length }})</h5>
+
+  <table *ngIf="customerList.length" class="table table-bordered table-hover">
+    <thead class="table-light">
+      <tr>
+        <th>Name</th>
+        <th>Income</th>
+        <th>Credit Score</th>
+        <th>Loan Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of customerList">
+        <td>{{ c.name }}</td>
+        <td>{{ c.income }}</td>
+        <td>{{ c.creditScore }}</td>
+        <td>{{ c.loanAmount }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-outline-danger mt-2" (click)="clearAll()" *ngIf="customerList.length">Clear All</button>
+</div>
